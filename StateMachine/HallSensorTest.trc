@@ -1,0 +1,1069 @@
+-- ****************************************************************************
+--
+--  Trace file: HallSensorTest.trc
+--
+--  RTI1401 7.5 (02-Nov-2015)
+--  Sun May 15 18:12:44 2016
+--
+--  Used options:
+--    TRCGenerateVirtualBlocks      = 0
+--    TRCGenerateLabels             = 0
+--    TRCGenerateStates             = 0
+--    TRCGenerateDerivatives        = 0
+--    TRCGenerateParamValues        = 0
+--    TRCGenerateApplicationKeyword = 0
+--    TRCOnlyGlobals                = 0
+--    TRCIsOmitVdOn                 = 0
+--
+--  Trace file format: 2
+--
+--  Copyright 2016, dSPACE GmbH. All rights reserved.
+--
+-- ****************************************************************************
+
+-- ******** Keywords **********************************************************
+
+-- _application "HallSensorTest.map"
+
+_genname     "RTI"
+_genversion  "7.5"
+_gendate     "05/15/2016 18:12:47"
+_description ""
+_author      "RTI1401 7.5 (02-Nov-2015)"
+_model       "HallSensorTest.mdl"
+
+-- Default data type formats
+_floating_point_type(64,IEEE)
+_integer_type(32)
+
+-- No Data Capture blocks within model: use base sample time as sampling period
+sampling_period[0]
+{
+  value:       0.001
+  alias:       "HostService"
+  increment:   0.001
+  unit:        "s"
+}
+
+
+
+-- ******** Simulation control variables **************************************
+
+finalTime
+{
+ type:  flt(64,IEEE)*
+ alias: "finalTime"
+ desc:  "Simulation stop time. When reached, simState switches to STOP."
+ flags:  SYSTEM|READONLY
+ unit:  "s"
+}
+
+currentTime
+{
+ type:  flt(64,IEEE)*
+ alias: "currentTime"
+ desc:  "Current simulation time. Increments with execution of Timer Task 1."
+ flags: SYSTEM|READONLY
+ unit:  "s"
+}
+
+modelStepSize
+{
+ type:  flt(64,IEEE)
+ alias: "modelStepSize"
+ desc:  "Fixed step size of the model, sample time of Timer Task 1."
+ flags: SYSTEM|READONLY
+ unit:  "s"
+}
+
+simState
+{
+ type:  int(32)
+ alias: "simState"
+ desc:  "Simulation state: STOP=0 PAUSE=1 RUN=2"
+ flags: SYSTEM
+ unit:  "-"
+}
+
+msg_last_error_no
+{
+ type:  uint(32)
+ alias: "errorNumber"
+ desc:  "Error number of last error message (zero if no error)."
+ unit:  "-"
+ flags: SYSTEM|READONLY
+}
+
+rtiAssertionMode
+{
+ type:  int(32)
+ alias: "rtiAssertionMode"
+ desc:  "Assertion Mode: OFF=0 WARN=1 STOP=2"
+ flags: SYSTEM
+ unit:  "-"
+}
+
+p_dsts_sum_of_reset_time
+{
+ type:  flt(64,IEEE)*
+ alias: "sumOfResetTime"
+ desc:  "Internal variable for summing up reset time."
+ unit:  "s"
+ flags: SYSTEM|READONLY|HIDDEN
+}
+
+-- ******** Model variables ***************************************************
+
+group "Model Root"
+{
+ flags: COLLAPSED
+}
+	group "SVEN" -- block-group
+	{
+	 block: "Outport"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_3_HallSensorTest_real_T_0[0]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "In1"
+		 desc:    ""
+		 flags:   SINK|READONLY
+		}
+
+
+
+	endgroup -- block-group "SVEN"
+
+	group "ThrottleSensor" -- block-group
+	{
+	 block: "Outport"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_3_HallSensorTest_real_T_0[1]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "In1"
+		 desc:    ""
+		 flags:   SINK|READONLY
+		}
+
+
+
+	endgroup -- block-group "ThrottleSensor"
+
+	group "y1" -- block-group
+	{
+	 block: "Outport"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_3_HallSensorTest_real_T_0[2]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "In1"
+		 desc:    ""
+		 flags:   SINK|READONLY
+		}
+
+
+
+	endgroup -- block-group "y1"
+
+	group "Green" -- block-group
+	{
+	 block: "Outport"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_3_HallSensorTest_boolean_T_1[0]
+		{
+		 type:    uint(8)*
+		 alias:   "In1"
+		 desc:    ""
+		 range:   < 0 ; 1 >
+		 bitmask: 0x01
+		 flags:   SINK|READONLY
+		}
+
+
+
+	endgroup -- block-group "Green"
+
+	group "u1" -- block-group
+	{
+	 block: "Outport"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_3_HallSensorTest_real_T_2[0]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "In1"
+		 desc:    ""
+		 flags:   SINK|READONLY
+		}
+
+
+
+	endgroup -- block-group "u1"
+
+	group "u2" -- block-group
+	{
+	 block: "Outport"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_3_HallSensorTest_real_T_2[1]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "In1"
+		 desc:    ""
+		 flags:   SINK|READONLY
+		}
+
+
+
+	endgroup -- block-group "u2"
+
+	group "y2" -- block-group
+	{
+	 block: "Outport"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_3_HallSensorTest_real_T_2[2]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "In1"
+		 desc:    ""
+		 flags:   SINK|READONLY
+		}
+
+
+
+	endgroup -- block-group "y2"
+
+	group "e1" -- block-group
+	{
+	 block: "Outport"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_3_HallSensorTest_real_T_2[3]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "In1"
+		 desc:    ""
+		 flags:   SINK|READONLY
+		}
+
+
+
+	endgroup -- block-group "e1"
+
+	group "e2" -- block-group
+	{
+	 block: "Outport"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_3_HallSensorTest_real_T_2[4]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "In1"
+		 desc:    ""
+		 flags:   SINK|READONLY
+		}
+
+
+
+	endgroup -- block-group "e2"
+
+	group "T_out_Nm" -- block-group
+	{
+	 block: "Outport"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_3_HallSensorTest_real_T_2[5]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "In1"
+		 desc:    ""
+		 flags:   SINK|READONLY
+		}
+
+
+
+	endgroup -- block-group "T_out_Nm"
+
+	group "PeriodIn" -- block-group
+	{
+	 block: "Outport"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_3_HallSensorTest_real_T_2[6]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "In1"
+		 desc:    ""
+		 flags:   SINK|READONLY
+		}
+
+
+
+	endgroup -- block-group "PeriodIn"
+
+	group "DutyCycleIn" -- block-group
+	{
+	 block: "Outport"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_3_HallSensorTest_real_T_2[7]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "In1"
+		 desc:    ""
+		 flags:   SINK|READONLY
+		}
+
+
+
+	endgroup -- block-group "DutyCycleIn"
+
+	group "FrequencyDRS" -- block-group
+	{
+	 block: "Constant"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		-- Skipping output Out1
+		p_1_HallSensorTest_real_T_0[17]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Value"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "FrequencyDRS"
+
+	group "PeriodDRS" -- block-group
+	{
+	 block: "Constant"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		-- Skipping output Out1
+		p_1_HallSensorTest_real_T_0[16]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Value"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "PeriodDRS"
+
+	group "SoC_%" -- block-group
+	{
+	 block: "Constant"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		-- Skipping output Out1
+		p_1_HallSensorTest_real_T_0[4]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Value"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "SoC_%"
+
+	group "T_min_Nm" -- block-group
+	{
+	 block: "Constant"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		-- Skipping output Out1
+		p_1_HallSensorTest_real_T_0[3]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Value"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "T_min_Nm"
+
+	group "Vehicle speed_km//h" -- block-group
+	{
+	 block: "Constant"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		-- Skipping output Out1
+		p_1_HallSensorTest_real_T_0[6]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Value"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Vehicle speed_km//h"
+
+	group "coast_domain" -- block-group
+	{
+	 block: "Constant"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		-- Skipping output Out1
+		p_1_HallSensorTest_real_T_0[1]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Value"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "coast_domain"
+
+	group "max_coast_Nm" -- block-group
+	{
+	 block: "Constant"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		-- Skipping output Out1
+		p_1_HallSensorTest_real_T_0[10]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Value"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "max_coast_Nm"
+
+	group "max_torque_Nm" -- block-group
+	{
+	 block: "Constant"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		-- Skipping output Out1
+		p_1_HallSensorTest_real_T_0[9]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Value"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "max_torque_Nm"
+
+	group "ped_max_limiet" -- block-group
+	{
+	 block: "Constant"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		-- Skipping output Out1
+		p_1_HallSensorTest_real_T_0[8]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Value"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "ped_max_limiet"
+
+	group "pedal_position_maxacc" -- block-group
+	{
+	 block: "Constant"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		-- Skipping output Out1
+		p_1_HallSensorTest_real_T_0[7]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Value"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "pedal_position_maxacc"
+
+	group "regen_activation_km//h" -- block-group
+	{
+	 block: "Constant"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		-- Skipping output Out1
+		p_1_HallSensorTest_real_T_0[5]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Value"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "regen_activation_km//h"
+
+	group "slewbreak_domain" -- block-group
+	{
+	 block: "Constant"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		-- Skipping output Out1
+		p_1_HallSensorTest_real_T_0[2]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Value"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "slewbreak_domain"
+
+	group "Display1" -- block-group
+	{
+	 block: "Display"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_HallSensorTest_real_T_0[1]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "In1"
+		 desc:    ""
+		 flags:   SINK|READONLY
+		}
+
+
+
+	endgroup -- block-group "Display1"
+
+	group "Display2" -- block-group
+	{
+	 block: "Display"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_HallSensorTest_real_T_0[4]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "In1"
+		 desc:    ""
+		 flags:   SINK|READONLY
+		}
+
+
+
+	endgroup -- block-group "Display2"
+
+	group "Display3" -- block-group
+	{
+	 block: "Display"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_HallSensorTest_real_T_0[5]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "In1"
+		 desc:    ""
+		 flags:   SINK|READONLY
+		}
+
+
+
+	endgroup -- block-group "Display3"
+
+	group "Gain" -- block-group
+	{
+	 block: "Gain"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_HallSensorTest_real_T_0[1]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_1_HallSensorTest_real_T_0[0]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Gain"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Gain"
+
+	group "Gain1" -- block-group
+	{
+	 block: "Gain"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_HallSensorTest_real_T_0[3]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_1_HallSensorTest_real_T_0[18]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Gain"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Gain1"
+
+	group "Logical\nOperator" -- block-group
+	{
+	 block: "Logic"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_3_HallSensorTest_boolean_T_1[0]
+		{
+		 type:    uint(8)*
+		 alias:   "Out1"
+		 desc:    ""
+		 range:   < 0 ; 1 >
+		 bitmask: 0x01
+		 flags:   OUTPUT|READONLY
+		}
+
+
+	endgroup -- block-group "Logical\nOperator"
+
+	group "Divide" -- block-group
+	{
+	 block: "Product"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_3_HallSensorTest_real_T_2[7]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+
+
+	endgroup -- block-group "Divide"
+
+	group "Rate Limiter2" -- block-group
+	{
+	 block: "RateLimiter"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_0_HallSensorTest_real_T_0[2]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_1_HallSensorTest_real_T_0[11]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "RisingSlewLimit"
+		 flags:   PARAM
+		}
+		p_1_HallSensorTest_real_T_0[12]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "FallingSlewLimit"
+		 flags:   PARAM
+		}
+		p_1_HallSensorTest_real_T_0[13]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "InitialCondition"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Rate Limiter2"
+
+	group "Saturation Tout1" -- block-group
+	{
+	 block: "Saturate"
+	 desc:  ""
+	 flags: BLOCK|COLLAPSED
+	}
+		p_3_HallSensorTest_real_T_2[5]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_1_HallSensorTest_real_T_0[14]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "UpperLimit"
+		 flags:   PARAM
+		}
+		p_1_HallSensorTest_real_T_0[15]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "LowerLimit"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Saturation Tout1"
+
+  
+  
+	group "ADC_TYPE4_BL1" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+		p_3_HallSensorTest_real_T_2[0]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "ADC"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+
+	endgroup -- subsystem-group "ADC_TYPE4_BL1"
+  
+  
+	group "ADC_TYPE4_BL2" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+		p_3_HallSensorTest_real_T_2[1]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "ADC"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+
+	endgroup -- subsystem-group "ADC_TYPE4_BL2"
+  
+  
+	group "DIO_TYPE3_ENC_BL1" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+		p_0_HallSensorTest_real_T_0[0]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Position"
+		 desc:    "No data (unused channel) "
+		 flags:   OUTPUT|READONLY
+		}
+		p_3_HallSensorTest_real_T_0[0]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Speed"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+
+	endgroup -- subsystem-group "DIO_TYPE3_ENC_BL1"
+  
+  
+	group "GreenButton_Inv" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+		p_0_HallSensorTest_boolean_T_1[0]
+		{
+		 type:    uint(8)*
+		 alias:   "Out"
+		 desc:    ""
+		 range:   < 0 ; 1 >
+		 bitmask: 0x01
+		 flags:   OUTPUT|READONLY
+		}
+
+	endgroup -- subsystem-group "GreenButton_Inv"
+  
+  
+	group "MicroAutoBox II DS1511 // DS1514" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+
+
+
+	endgroup -- subsystem-group "MicroAutoBox II DS1511 // DS1514"
+  
+  
+	group "PWM DRS" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+
+	endgroup -- subsystem-group "PWM DRS"
+  
+  
+	group "RTI Data" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+
+	endgroup -- subsystem-group "RTI Data"
+  
+  
+	group "MATLAB Function2" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+		p_3_HallSensorTest_real_T_0[1]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "y"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_3_HallSensorTest_real_T_0[2]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "y1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_3_HallSensorTest_real_T_2[2]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "y2"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_3_HallSensorTest_real_T_2[3]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "e1"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_3_HallSensorTest_real_T_2[4]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "e2"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+
+
+
+	endgroup -- subsystem-group "MATLAB Function2"
+  
+  
+	group "Pedal map" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+		p_0_HallSensorTest_real_T_0[6]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "T_out"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+
+
+
+	endgroup -- subsystem-group "Pedal map"
+  
+  
+	group "pedal logic" -- subsystem-group
+	{
+	 flags: COLLAPSED
+	 desc:  ""
+	}
+
+		p_0_HallSensorTest_real_T_0[4]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "ped_accel"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+		p_0_HallSensorTest_real_T_0[5]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "T_regen"
+		 desc:    ""
+		 flags:   OUTPUT|READONLY
+		}
+
+
+
+	endgroup -- subsystem-group "pedal logic"
+
+
+
+
+endgroup -- "Model Root"
+-- ******** Tunable Parameters ************************************************
+
+group "Tunable Parameters"
+{
+ flags: COLLAPSED
+}
+
+
+endgroup
+
+
+-- ******** State Machine Data ************************************************
+
+group "State Machine Data"
+{
+ flags: COLLAPSED
+}
+
+
+endgroup
+
+
+-- ******** Data Store Memories ***********************************************
+
+-- No Data Store Memories within the model.
+
+
+-- ******** Labels ************************************************************
+
+-- Generation of labels turned off with TRCGenerateLabels option.
+
+-- ******** RTT Dynamic Variables *********************************************
+
+group "RTT Dynamic Variables"
+{
+ flags: COLLAPSED
+}
+
+endgroup
+
+-- ******** Task Information variables ****************************************
+
+group "Task Info"
+{
+ flags: COLLAPSED
+}
+  group "Timer Task 1"
+  {
+   flags: COLLAPSED
+  }
+
+  pRti_TIMERA_STime
+  {
+   type:  flt(64,IEEE)*
+   alias: "sampleTime"
+   flags: READONLY
+  }
+  pRti_TIMERA_TTime
+  {
+   type:  flt(64,IEEE)*
+   alias: "turnaroundTime"
+   flags: READONLY
+  }
+  pRti_TIMERA_TState
+  {
+   type:  int(32)*
+   alias: "state"
+   flags: READONLY
+  }
+  pRti_TIMERA_OType
+  {
+   type:  int(32)*
+   alias: "overrunCheckType"
+   flags: READONLY
+  }
+  pRti_TIMERA_OMax
+  {
+   type:  int(32)*
+   alias: "overrunQueueMax"
+   flags: READONLY
+  }
+  pRti_TIMERA_ORpt
+  {
+   type:  int(32)*
+   alias: "overrunQueueCount"
+   flags: READONLY
+  }
+  pRti_TIMERA_OCnt
+  {
+   type:  int(32)*
+   alias: "overrunCount"
+   flags: READONLY
+  }
+  pRti_TIMERA_TCnt
+  {
+   type:  flt(64,IEEE)*
+   alias: "taskCallCount"
+   flags: READONLY
+  }
+  pRti_TIMERA_Prio
+  {
+   type:  int(32)*
+   alias: "priority"
+   flags: READONLY
+  }
+  endgroup
+
+
+endgroup
+
+-- ******** [EOF] *************************************************************
+
+
+
+-- ******** User variables from model_usr.trc *********************************
+
+-- RTI_USR_TRC_BEGIN
+
+-- No user file HallSensorTest_usr.trc found.
+
+-- RTI_USR_TRC_END
