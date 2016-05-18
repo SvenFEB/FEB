@@ -4,7 +4,7 @@ VehicleMass = 200;
 DriverMass = 70;
 Mass = VehicleMass+DriverMass;
 MaxSteeringAngle = 24.635; % Maximal steering angle in °
-MaxDisplacementSteeringRack = 50; % Maximal displacement steering rack in mm
+MaxDisplacementSteeringRack = 21.08; % Maximal displacement steering rack in mm
 
 % Electrical Limits
 DcCLimGen = 0; % A
