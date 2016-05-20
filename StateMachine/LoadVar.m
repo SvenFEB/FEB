@@ -47,6 +47,8 @@ Steer_upperlim = 0.9;
 Steer_zero = 0.5;
 Steer_Limits = [Steer_lowerlim,Steer_upperlim,Steer_zero];
 
+TimeDiffLimit = 3600;
+
 %% Alexander Parameters
 DifferentialFactor = 0.5; % Additional allowed speed to enable acceleration in m/s
 AllowReset = 0; % Change to 1 if a reset of the DMC is needed
