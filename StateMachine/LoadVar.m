@@ -5,6 +5,10 @@ DriverMass = 70;
 Mass = VehicleMass+DriverMass;
 MaxSteeringAngle = 24.635; % Maximal steering angle in °
 MaxDisplacementSteeringRack = 21.08; % Maximal displacement steering rack in mm
+TrackWidth = 1.200; % d in m
+TrackLength = 1.534; % L in m
+GearRatio = 10.364; % i
+TireRadius = 0.4572/2; % r in m
 
 % Electrical Limits
 DcCLimGen = 0; % A
