@@ -54,18 +54,29 @@ Steer_Limits = [Steer_lowerlim,Steer_upperlim,Steer_zero];
 TimeDiffLimit = 3600;
 
 %% Alexander Parameters
-DifferentialFactor = 5; % Additional allowed speed to enable acceleration in m/s
+DifferentialFactor = 0.5; % Additional allowed speed to enable acceleration in m/s
 AllowReset = 0; % Change to 1 if a reset of the DMC is needed
 
 
 
 %% Sven Parameters
 
+% Regen Logic
+T_max_Nm=40; %[Nm] Max availible motor torque
+T_min_Nm= -15; %[Nm] Minium regen torque
+regen_activation_kph= 15; %[km/h] regen activation
+coast_domain= 0.1; %Coasting region in pedal map
+slewbreak_domain=0.15;
+pedal_position_maxacc=0.9;
+ped_max_limiet=1;
+max_coast_Nm= 0; %[Nm]Coasting torque, typically 0Nm
 
 
 
 %% Nick Parameters
-%% Torque vectoring
+
+%% Torque Vectoring
+
 Gr = 10.32;
 
 H = 0.2735;
@@ -103,5 +114,4 @@ Tr = 1.2;
 g = 9.81;
 
 mu_max = 1.5;
-
 
